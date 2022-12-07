@@ -27,13 +27,6 @@ app.post('/gift', (req, res) => {
     res.send("You are not on the list :(");
   }
 
-
-
-  // TODO: prove that a name is in the list
-  const isInTheList = false;
-  if(isInTheList) {
-    res.send("You got a toy robot!");
-  }
 });
 
 app.listen(port, () => {
