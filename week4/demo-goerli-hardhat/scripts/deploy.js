@@ -1,8 +1,8 @@
 const hre = require("hardhat");
 
 async function main() {
-  const Contract = await hre.ethers.getContractFactory("DefineWinner");
-  const contract = await Contract.deploy();
+  const ContractWinner = await hre.ethers.getContractFactory("ContractWinner");
+  const contract = await ContractWinner.deploy();
 
   await contract.deployed();
 

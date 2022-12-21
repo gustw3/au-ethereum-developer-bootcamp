@@ -1,33 +1,20 @@
 const hre = require("hardhat");
 
-const CONTRACT_ADDR = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+const CONTRACT_ADDR = "0x51d5EE947c4a74AD2085Cbb41d0df9513D2b6684";
 const provider = new ethers.providers.AlchemyProvider("goerli", process.env.ALCHEMY_PK)
 const wallet = new ethers.Wallet(process.env.PK , provider)
 const abi = [
   {
-    "inputs": [],
-    "name": "defineWinner",
-    "outputs": [
+    "inputs": [
       {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
+        "internalType": "address",
+        "name": "_address",
+        "type": "address"
       }
     ],
+    "name": "emitWinner",
+    "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "x",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   }
 ]
@@ -39,15 +26,13 @@ async function main() {
     abi ,
     wallet);
 
-    const tx = await contract.winnerIs();
+    const tx = await contract.emitWinner("0xcF469d3BEB3Fc24cEe979eFf83BE33ed50988502");
 
     await tx.wait();
 
     console.log(tx);
   }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
 main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
